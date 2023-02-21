@@ -43,6 +43,12 @@ class ContactService {
         })
     }
 
+    async findByEmail(email) {
+        return await this.find({
+            email: { $regex: new RegExp(email), $options: "i" }
+        })
+    }
+
     async findById(id) {
         return await this.Contact.findOne({
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null
